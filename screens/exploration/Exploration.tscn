@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://grid_movement/tilesets/grid_lines/grid_lines_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://grid_movement/tilesets/grid/grid_tileset.tres" type="TileSet" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://screens/combat/actors/Opponent.tscn" type="PackedScene" id=7]
 [ext_resource path="res://dialog_system/dialog_player/DialogPlayer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://grid_movement/pawns/pawn.gd" type="Script" id=9]
-[ext_resource path="res://dialog_system/interface/DialogUI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://grid_movement/pawns/space.gd" type="Script" id=10]
+[ext_resource path="res://dialog_system/interface/DialogUI.tscn" type="PackedScene" id=11]
 
 [node name="Exploration" type="Node2D" index="0"]
 
@@ -101,7 +102,19 @@ combat_actor = null
 
 dialog_file = "res://dialog_system/dialogs/object.json"
 
-[node name="Object2" type="Node2D" parent="Grid" index="3"]
+[node name="Object3" type="Node2D" parent="Grid" index="3"]
+
+position = Vector2( 800, 480 )
+script = ExtResource( 10 )
+type = null
+combat_actor = null
+encounter = null
+
+[node name="DialogPlayer" parent="Grid/Object3" index="0" instance=ExtResource( 8 )]
+
+dialog_file = "res://dialog_system/dialogs/object.json"
+
+[node name="Object2" type="Node2D" parent="Grid" index="4"]
 
 editor/display_folded = true
 position = Vector2( 800, 288 )
@@ -113,7 +126,7 @@ combat_actor = null
 
 dialog_file = "res://dialog_system/dialogs/object.json"
 
-[node name="DialogUI" parent="." index="2" instance=ExtResource( 10 )]
+[node name="DialogUI" parent="." index="2" instance=ExtResource( 11 )]
 
 [connection signal="dialog_finished" from="Grid/Opponent/DialogPlayer" to="Grid/Opponent" method="set_active" binds= [ true ]]
 
