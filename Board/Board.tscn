@@ -1,0 +1,144 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Board/Board.gd" type="Script" id=1]
+[ext_resource path="res://grid_movement/tilesets/grid/grid_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Board/Space.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Board/board_player.gd" type="Script" id=4]
+[ext_resource path="res://grid_movement/pawns/character.png" type="Texture" id=5]
+
+[node name="Board" type="Node" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="turnManager" type="Node2D" parent="." index="0"]
+
+[node name="map" type="TileMap" parent="." index="1"]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray(  )
+
+[node name="Space" parent="map" index="0" instance=ExtResource( 3 )]
+
+position = Vector2( 32, 32 )
+down = NodePath("../Space2")
+
+[node name="Space2" parent="map" index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 32, 160 )
+right = NodePath("../Space3")
+up = NodePath("../Space")
+
+[node name="Space3" parent="map" index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 224, 160 )
+left = NodePath("../Space2")
+right = NodePath("../Space4")
+
+[node name="Space4" parent="map" index="3" instance=ExtResource( 3 )]
+
+position = Vector2( 480, 160 )
+
+[node name="Space5" parent="map" index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 800, 160 )
+
+[node name="Space6" parent="map" index="5" instance=ExtResource( 3 )]
+
+position = Vector2( 800, 352 )
+
+[node name="Space7" parent="map" index="6" instance=ExtResource( 3 )]
+
+position = Vector2( 1120, 352 )
+
+[node name="Space8" parent="map" index="7" instance=ExtResource( 3 )]
+
+position = Vector2( 480, 352 )
+
+[node name="Space9" parent="map" index="8" instance=ExtResource( 3 )]
+
+position = Vector2( 224, 352 )
+
+[node name="Space10" parent="map" index="9" instance=ExtResource( 3 )]
+
+position = Vector2( 32, 544 )
+
+[node name="Space11" parent="map" index="10" instance=ExtResource( 3 )]
+
+position = Vector2( 224, 544 )
+
+[node name="Space12" parent="map" index="11" instance=ExtResource( 3 )]
+
+position = Vector2( 224, 672 )
+
+[node name="Space13" parent="map" index="12" instance=ExtResource( 3 )]
+
+position = Vector2( 416, 672 )
+
+[node name="Space14" parent="map" index="13" instance=ExtResource( 3 )]
+
+position = Vector2( 544, 672 )
+
+[node name="Space15" parent="map" index="14" instance=ExtResource( 3 )]
+
+position = Vector2( 928, 672 )
+
+[node name="player (mk scn)" type="Node2D" parent="map" index="15"]
+
+position = Vector2( 32, 32 )
+script = ExtResource( 4 )
+
+[node name="Pivot" type="Position2D" parent="map/player (mk scn)" index="0"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="map/player (mk scn)/Pivot" index="0"]
+
+z_index = 1
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Offset", "Z Index" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="map/player (mk scn)" index="1"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+blend_times = [  ]
+_sections_unfolded = [ "Pause", "Playback Options" ]
+
+[node name="Tween" type="Tween" parent="map/player (mk scn)" index="2"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="Line2D" type="Line2D" parent="." index="2"]
+
+z_index = -1
+points = PoolVector2Array( 32, 32, 32, 160, 96, 160, 224, 160, 480, 160, 800, 160, 800, 352, 480, 352, 224, 352, 224, 544, 224, 672, 416, 672, 544, 672, 928, 672 )
+width = 10.0
+default_color = Color( 0.4, 0.5, 1, 1 )
+texture_mode = 97
+sharp_limit = 2.0
+round_precision = 8
+
+

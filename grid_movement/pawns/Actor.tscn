@@ -65,15 +65,12 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.20007, 0.917384 ), Vector2( 0.916712, 1.13495 ), Vector2( 1, 1 ) ]
 }
 
-[node name="Actor" type="Node2D" index="0"]
+[node name="Actor" type="Node2D"]
 
 position = Vector2( 32, 32 )
 z_index = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
-__meta__ = {
-"_edit_group_": true
-}
 type = 0
 combat_actor = null
 
@@ -87,6 +84,7 @@ playback_speed = 1.0
 anims/bump = SubResource( 1 )
 anims/walk = SubResource( 2 )
 blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
 
 [node name="Tween" type="Tween" parent="." index="1"]
 

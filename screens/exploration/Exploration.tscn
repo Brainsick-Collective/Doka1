@@ -12,7 +12,7 @@
 [ext_resource path="res://grid_movement/pawns/space.gd" type="Script" id=10]
 [ext_resource path="res://dialog_system/interface/DialogUI.tscn" type="PackedScene" id=11]
 
-[node name="Exploration" type="Node2D" index="0"]
+[node name="Exploration" type="Node2D"]
 
 [node name="Grass" type="TileMap" parent="." index="0"]
 
@@ -95,6 +95,7 @@ autostart = true
 
 position = Vector2( 544, 288 )
 script = ExtResource( 9 )
+_sections_unfolded = [ "Transform" ]
 type = 2
 combat_actor = null
 
@@ -106,17 +107,13 @@ dialog_file = "res://dialog_system/dialogs/object.json"
 
 position = Vector2( 800, 480 )
 script = ExtResource( 10 )
-type = null
+_sections_unfolded = [ "Material", "Transform" ]
+type = 2
 combat_actor = null
 encounter = null
 
-[node name="DialogPlayer" parent="Grid/Object3" index="0" instance=ExtResource( 8 )]
-
-dialog_file = "res://dialog_system/dialogs/object.json"
-
 [node name="Object2" type="Node2D" parent="Grid" index="4"]
 
-editor/display_folded = true
 position = Vector2( 800, 288 )
 script = ExtResource( 9 )
 type = 2

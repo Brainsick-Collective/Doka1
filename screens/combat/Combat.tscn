@@ -50,7 +50,7 @@ func add_actor(actor):
 	actor.position.x += 200 * get_child_count()
 	add_child(actor)"
 
-[node name="Combat" type="Node2D" index="0"]
+[node name="Combat" type="Node2D"]
 
 script = SubResource( 1 )
 
@@ -66,6 +66,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="UI" type="Control" parent="." index="2"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
