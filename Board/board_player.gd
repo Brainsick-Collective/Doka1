@@ -7,6 +7,9 @@ extends Node2D
 enum CELL_TYPES { ACTOR, OBSTACLE, OBJECT }
 var type = ACTOR
 var curr_space
+var speed = 500
+var target_space
+var moving = false
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -18,20 +21,16 @@ func _ready():
 
 func _process(delta):
 	var input_direction = get_input_direction()
-	if not input_direction:
-		return
-	update_look_direction(input_direction)
-	set_process(false)
-	var target_space
-	if curr_space:
-		self.position = curr_space.position
+	if input_direction and !moving:
+		update_look_direction(input_direction)
+	if curr_space and !moving:
 		target_space = curr_space.try_move(input_direction)
 		#target_space = get_node(target_space)
 		if target_space:
-			move_to(target_space.position)
-			curr_space = target_space
-		$Tween.start()
-	set_process(true)
+			moving=true
+	if target_space:
+		move_towards(position, target_space.position, delta)
+	$Tween.start()
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -46,16 +45,18 @@ func get_input_direction():
 func update_look_direction(direction):
 	$Pivot/Sprite.rotation = direction.angle()
 
-func move_to(target_position):
-	print("target_position")
-	print(target_position)
-	set_process(false)
-	var move_direction = (position - target_position).normalized()
-	#$Tween.interpolate_property($Pivot, "position", move_direction * 32, Vector2(), $AnimationPlayer.current_animation_length, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	#$Pivot/Sprite.position = position - target_position
-	position = position + 1/2 * move_direction
-	if position == target_position:
-		set_process(true)
+func move_towards(start, target, delta):
+	set_process_input(false)
+	var v = (target - start).normalized()
+	v *= delta* speed
+	position +=v
+	if position.distance_squared_to(target) < 15:
+		print("here!")
+		curr_space = target_space
+		target_space = null
+		set_process_input(true)
+		moving=false
+		
 
 func bump():
 	$AnimationPlayer.play("bump")

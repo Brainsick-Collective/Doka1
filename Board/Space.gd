@@ -13,7 +13,6 @@ func _ready():
 	pass
 
 func try_move(direction):
-	print("try move") 
 	print(direction)
 	var leftv = Vector2(-1,0)
 	var rightv = Vector2(1,0)
@@ -34,8 +33,9 @@ func try_move(direction):
 			print("left")
 			ret = left
 	if ret:
+		print("ret")
+		print(ret)
 		return get_node(ret)
-	print("null")
 	return null
 		
 #func _process(delta):
