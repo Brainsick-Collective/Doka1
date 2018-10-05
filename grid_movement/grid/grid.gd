@@ -24,7 +24,6 @@ func try_direction(cell_start, direction):
 		cell_target_type = get_cellv(cell_target)
 		if cell_target.x <0 or cell_target.x > 1300 or cell_target.y <0 or cell_target.y > 1300:
 			return null
-		print(cell_target)
 	return cell_target
 			
 func react_to_move(cell_target):

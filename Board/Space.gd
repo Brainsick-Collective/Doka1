@@ -13,7 +13,6 @@ func _ready():
 	pass
 
 func try_move(direction):
-	print(direction)
 	var leftv = Vector2(-1,0)
 	var rightv = Vector2(1,0)
 	var upv = Vector2(0,-1)
@@ -33,8 +32,6 @@ func try_move(direction):
 			print("left")
 			ret = left
 	if ret:
-		print("ret")
-		print(ret)
 		return get_node(ret)
 	return null
 		

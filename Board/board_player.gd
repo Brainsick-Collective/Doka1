@@ -6,19 +6,26 @@ extends Node2D
 #export(NodePath) var curr_space
 enum CELL_TYPES { ACTOR, OBSTACLE, OBJECT }
 var type = ACTOR
-var curr_space
+export (NodePath) var curr_space
 var speed = 500
 var target_space
 var moving = false
+var myTurn = false
+var moves_left = 0
+signal next_turn
+var spaces_moved
 
 func _ready():
+	if !myTurn:
+		set_process(false)
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	curr_space=get_parent().get_node("Space")
-	print("curent space")
-	print(curr_space.name)
-	pass
-
+	for node in get_parent().get_children():
+		if node.position == position and node != self:
+			curr_space = node
+			print("curent space")
+			print(curr_space.name)
+	
 func _process(delta):
 	var input_direction = get_input_direction()
 	if input_direction and !moving:
@@ -30,7 +37,7 @@ func _process(delta):
 			moving=true
 	if target_space:
 		move_towards(position, target_space.position, delta)
-	$Tween.start()
+	#$Tween.start()
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -52,12 +59,38 @@ func move_towards(start, target, delta):
 	position +=v
 	if position.distance_squared_to(target) < 15:
 		print("here!")
-		curr_space = target_space
-		target_space = null
 		set_process_input(true)
 		moving=false
+		print("target")
+		print(target)
+		if spaces_moved.back():
+			print(spaces_moved.back())
+			if target == spaces_moved.back():
+				moves_left+=1
+				spaces_moved.pop_back()
+				print("moving back")
+				print(spaces_moved)
+				curr_space = target_space		
+				target_space = null
+		else:
+			moves_left-=1
+			spaces_moved.push_back(curr_space.position)
+			curr_space = target_space		
+			target_space = null
+			print("moving from")
+			print(spaces_moved)
+			if moves_left == 0:
+				myTurn=false
+				set_process(false)
+				emit_signal("next_turn", int(name.right(5)))
 		
 
+func start_turn():
+	spaces_moved = Array()
+	myTurn = true
+	print(name)
+	moves_left = 3
+	set_process(true)
 func bump():
 	$AnimationPlayer.play("bump")
 
