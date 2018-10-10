@@ -4,7 +4,7 @@ extends Node
 # var a = 2
 # var b = "textvar"
 enum CELL_TYPES { ACTOR, OBSTACLE, OBJECT }
-var num_players = 2
+var num_players = 3 
 func _ready():
 	var player1 = get_node("map/player1")
 	var player2 = get_node("map/player2")

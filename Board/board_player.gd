@@ -16,6 +16,9 @@ signal next_turn
 var spaces_moved
 
 func _ready():
+	#$moves.set_anchor(position - Vector2(32,96))
+	$moves.set_text(str(moves_left))
+	
 	if !myTurn:
 		set_process(false)
 	# Called when the node is added to the scene for the first time.
@@ -23,10 +26,9 @@ func _ready():
 	for node in get_parent().get_children():
 		if node.position == position and node != self:
 			curr_space = node
-			print("curent space")
-			print(curr_space.name)
 	
 func _process(delta):
+	$moves.text=str(moves_left)
 	var input_direction = get_input_direction()
 	if input_direction and !moving:
 		update_look_direction(input_direction)
@@ -58,39 +60,33 @@ func move_towards(start, target, delta):
 	v *= delta* speed
 	position +=v
 	if position.distance_squared_to(target) < 15:
-		print("here!")
 		set_process_input(true)
 		moving=false
-		print("target")
-		print(target)
-		if spaces_moved.back():
-			print(spaces_moved.back())
+		if !spaces_moved.empty():
 			if target == spaces_moved.back():
 				moves_left+=1
 				spaces_moved.pop_back()
-				print("moving back")
-				print(spaces_moved)
 				curr_space = target_space		
 				target_space = null
-		else:
-			moves_left-=1
-			spaces_moved.push_back(curr_space.position)
-			curr_space = target_space		
-			target_space = null
-			print("moving from")
-			print(spaces_moved)
-			if moves_left == 0:
-				myTurn=false
-				set_process(false)
-				emit_signal("next_turn", int(name.right(5)))
+				return
+		moves_left-=1
+		spaces_moved.push_back(curr_space.position)
+		curr_space = target_space		
+		target_space = null
+		if moves_left == 0:
+			myTurn=false
+			$moves.hide()
+			set_process(false)
+			emit_signal("next_turn", int(name.right(5)))
 		
 
 func start_turn():
 	spaces_moved = Array()
 	myTurn = true
-	print(name)
 	moves_left = 3
 	set_process(true)
+	$moves.show()
+
 func bump():
 	$AnimationPlayer.play("bump")
 

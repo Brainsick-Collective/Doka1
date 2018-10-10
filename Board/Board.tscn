@@ -122,12 +122,14 @@ left = NodePath("../Space14")
 [node name="player1" parent="map" index="15" instance=ExtResource( 4 )]
 
 position = Vector2( 32, 32 )
-curr_space = null
 
 [node name="player2" parent="map" index="16" instance=ExtResource( 4 )]
 
 position = Vector2( 928, 672 )
-curr_space = null
+
+[node name="player3" parent="map" index="17" instance=ExtResource( 4 )]
+
+position = Vector2( 1120, 352 )
 
 [node name="Line2D" type="Line2D" parent="." index="2"]
 
