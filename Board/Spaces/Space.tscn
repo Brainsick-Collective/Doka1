@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Board/Spaces/Space.gd" type="Script" id=1]
+[ext_resource path="res://grid_movement/tilesets/grid/object.png" type="Texture" id=2]
+
+
+
+
+[node name="Space" type="Node2D" index="0"]
+
+position = Vector2( 0, 3 )
+script = ExtResource( 1 )
+left = null
+right = null
+up = null
+down = null
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Offset" ]
+
+

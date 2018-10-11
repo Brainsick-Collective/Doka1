@@ -10,8 +10,8 @@ config_version=3
 
 [application]
 
-config/name="JRPG Demo"
-run/main_scene="res://Board/Board.tscn"
+config/name="Dokapon Clone"
+run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
 [display]
