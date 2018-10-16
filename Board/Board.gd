@@ -8,8 +8,10 @@ var num_players = 3
 func _ready():
 	var player1 = get_node("map/player1")
 	var player2 = get_node("map/player2")
+	var player3 = get_node("map/player3")
 	player1.connect("next_turn",self,"next_turn")
 	player2.connect("next_turn",self,"next_turn")
+	player3.connect("next_turn",self,"next_turn")
 	var board = get_node("map")
 	for child in board.get_children():
 		if child.type == OBJECT:
