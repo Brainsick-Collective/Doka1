@@ -5,7 +5,7 @@
 [ext_resource path="res://Board/Spaces/Space.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Board/Actor/player.tscn" type="PackedScene" id=4]
 
-[node name="Board" type="Node" index="0"]
+[node name="Board" type="Node"]
 
 script = ExtResource( 1 )
 

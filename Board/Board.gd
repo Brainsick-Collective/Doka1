@@ -5,6 +5,10 @@ extends Node
 # var b = "textvar"
 enum CELL_TYPES { ACTOR, OBSTACLE, OBJECT }
 var num_players = 3 
+
+func initialize(numPlayers):
+	num_players = numPlayers
+	
 func _ready():
 	var player1 = get_node("map/player1")
 	var player2 = get_node("map/player2")
@@ -21,6 +25,7 @@ func _ready():
 
 func next_turn(playerID):
 	var next_player
+	print(playerID)
 	if playerID< num_players:
 		playerID+=1
 	else:
