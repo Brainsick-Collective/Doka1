@@ -1,0 +1,213 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://interface/NewGameMenu.gd" type="Script" id=1]
+[ext_resource path="res://interface/BackgroundColor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://interface/menu-theme.tres" type="Theme" id=3]
+[ext_resource path="res://interface/menu-font.tres" type="DynamicFont" id=4]
+
+[node name="NewGameMenu" type="Control"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Hint" ]
+SUB_MENU_PATH = null
+numPlayers = null
+
+[node name="BackgroundColor" parent="." index="0" instance=ExtResource( 2 )]
+
+[node name="ColorRect" type="ColorRect" parent="." index="1"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -288.0
+margin_top = -184.0
+margin_right = 288.0
+margin_bottom = 184.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.409936, 0.558594, 0.474974, 0 )
+_sections_unfolded = [ "Margin" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 60 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+custom_constants/separation = 60
+alignment = 1
+_sections_unfolded = [ "Hint", "Theme", "custom_constants" ]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer" index="0"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 75.0
+margin_right = 576.0
+margin_bottom = 118.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 5.0
+margin_right = 234.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Players"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "Theme" ]
+
+[node name="SpinBox" type="SpinBox" parent="ColorRect/VBoxContainer/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 238.0
+margin_right = 576.0
+margin_bottom = 43.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 5
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 4.0
+step = 1.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
+editable = true
+prefix = ""
+suffix = ""
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags" ]
+
+[node name="Start" type="Button" parent="ColorRect/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 261.0
+margin_top = 178.0
+margin_right = 315.0
+margin_bottom = 205.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 4
+size_flags_vertical = 5
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Start"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Size Flags" ]
+
+[node name="Back" type="Button" parent="ColorRect/VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 261.0
+margin_top = 265.0
+margin_right = 315.0
+margin_bottom = 292.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 4
+size_flags_vertical = 5
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Back"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Size Flags" ]
+
+[node name="Label" type="Label" parent="ColorRect" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = -48.0
+margin_right = 576.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "How many players?"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme", "custom_fonts" ]
+
+[connection signal="value_changed" from="ColorRect/VBoxContainer/HBoxContainer/SpinBox" to="." method="_on_SpinBox_value_changed"]
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Back" to="." method="_on_Back_pressed"]
+
+
